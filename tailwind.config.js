@@ -1,21 +1,22 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: ['./app/**/*.{js,jsx,ts,tsx}', './components/**/*.{js,jsx,ts,tsx}'],
   presets: [require('nativewind/preset')],
   theme: {
     extend: {
       colors: {
-        // Putih hangat, bukan putih murni. Mengurangi silau untuk pengguna lanjut usia.
-        surface: { DEFAULT: '#F2F1EC', raised: '#FDFBF7', sunken: '#EDE7DC' },
-        ink: { DEFAULT: '#1B211F', muted: '#484F4C', soft: '#6B7470' },
-        line: { DEFAULT: '#C2B6A0', soft: '#D6CDBA' },
-        // Oranye oksida, bukan biru — sensitivitas mata ke biru menurun seiring usia.
-        brand: { text: '#82290D', DEFAULT: '#A8390F', tint: '#FBE8DF', deep: '#6E2409' },
-        // Gunmetal untuk header/chrome.
-        steel: { DEFAULT: '#1C2228', on: '#F2F1EC', soft: '#AEB6BC' },
-        ok: { text: '#135236', tint: '#E3EFE4' },
-        warn: { text: '#634004', tint: '#FBF0D8' },
-        bad: { text: '#8E1E14', tint: '#FAE5E1' },
+        // Krem hangat — dipakai di layar terang (register, home, detail).
+        surface: { DEFAULT: '#FDF6EE', raised: '#FFFFFF', sunken: '#F3E9DC' },
+        ink: { DEFAULT: '#1F1B19', muted: '#8C827B', soft: '#8C827B' },
+        line: { DEFAULT: '#E5DCD3', soft: '#EFE7DD' },
+        // Oranye brand.
+        brand: { text: '#C94A14', DEFAULT: '#E85A1F', tint: '#FBE3D2', deep: '#C94A14' },
+        // Gunmetal gelap — dipakai di layar login (dark theme) dan kartu kendaraan.
+        steel: { DEFAULT: '#171412', soft: '#262220', on: '#FDF6EE' },
+        ok: { text: '#3E9B5F', tint: '#E3F3E8' },
+        warn: { text: '#8A5A14', tint: '#FBEBD2' },
+        bad: { text: '#D14343', tint: '#FBE3E3' },
       },
       fontFamily: {
         display: ['Archivo_700Bold'],

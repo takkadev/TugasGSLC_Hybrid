@@ -2,8 +2,20 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
-    "paths": { "@/*": ["./*"] }
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    }
   },
-  "include": ["**/*.ts", "**/*.tsx", "nativewind-env.d.ts", "expo-env.d.ts", ".expo/types/**/*.ts"],
-  "exclude": ["node_modules", "dist", ".expo"]
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "nativewind-env.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".expo"
+  ]
 }
