@@ -64,7 +64,7 @@ export default function AuthScreen() {
         </View>
 
         {!isLogin ? (
-          <Text className="mb-4 text-brand-text active:opacity-70" onPress={() => setMode('login')}>
+          <Text className="mb-4 text-brand-text active:opacity-70" onPress={() => { setMode('login'); setErrors({}); }}>
             ← Kembali
           </Text>
         ) : null}
@@ -106,23 +106,19 @@ export default function AuthScreen() {
             error={errors.password}
           />
 
-          {isLogin ? (
-            <Text className="self-end text-body-s text-brand active:opacity-70">Lupa password?</Text>
-          ) : null}
-
           <Button label={isLogin ? 'Masuk' : 'Daftar'} onPress={handleSubmit} />
 
           {isLogin ? (
             <Text className="text-center text-body-s text-steel-on/70">
               Belum punya akun?{' '}
-              <Text className="text-brand" onPress={() => setMode('register')}>
+              <Text className="text-brand" onPress={() => { setMode('register'); setErrors({}); }}>
                 Daftar sekarang
               </Text>
             </Text>
           ) : (
             <Text className="text-center text-body-s text-ink-muted">
               Sudah punya akun?{' '}
-              <Text className="text-brand" onPress={() => setMode('login')}>
+              <Text className="text-brand" onPress={() => { setMode('login'); setErrors({}); }}>
                 Masuk
               </Text>
             </Text>

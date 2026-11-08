@@ -15,6 +15,7 @@ export function Input({ label, error, dark = false, ...rest }: InputProps) {
         {label}
       </Text>
       <TextInput
+        accessibilityLabel={label}
         className={`h-field rounded-card border px-4 text-base ${
           dark ? 'border-surface/20 bg-surface/5 text-steel-on' : 'bg-white text-ink'
         } ${error ? 'border-bad-text' : dark ? '' : 'border-line'}`}
