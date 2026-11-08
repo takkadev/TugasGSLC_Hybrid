@@ -10,12 +10,12 @@ export const COLORS = {
   brandTint: '#FBE8DF',
   steel: '#1C2228',
   steelOn: '#F2F1EC',
-  okText: '#135236',
-  okTint: '#E3EFE4',
-  warnText: '#634004',
-  warnTint: '#FBF0D8',
-  badText: '#8E1E14',
-  badTint: '#FAE5E1',
+  okText: '#3E9B5F',
+  okTint: '#E3F3E8',
+  warnText: '#8A5A14',
+  warnTint: '#FBEBD2',
+  badText: '#D14343',
+  badTint: '#FBE3E3',
 } as const;
 
 /** Target sentuh minimum, penting untuk pengguna lanjut usia. */

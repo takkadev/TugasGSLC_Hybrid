@@ -11,7 +11,7 @@ export interface Service {
   hargaRupiah: number;
   durasiMenit: number;
   termasuk: string[];
-  ikon: 'water-outline' | 'checkmark-done-outline' | 'sparkles-outline';
+  ikon: 'water-outline' | 'clipboard-outline' | 'sparkles-outline';
 }
 
 export interface Branch {
