@@ -6,17 +6,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Krem hangat — dipakai di layar terang (register, home, detail).
-        surface: { DEFAULT: '#FDF6EE', raised: '#FFFFFF', sunken: '#F3E9DC' },
-        ink: { DEFAULT: '#1F1B19', muted: '#8C827B', soft: '#8C827B' },
-        line: { DEFAULT: '#D8CBBD', soft: '#EFE7DD' },
-        // Oranye brand.
-        brand: { text: '#C94A14', DEFAULT: '#E85A1F', tint: '#FBE3D2', deep: '#C94A14' },
-        // Gunmetal gelap — dipakai di layar login (dark theme) dan kartu kendaraan.
-        steel: { DEFAULT: '#171412', soft: '#262220', on: '#FDF6EE' },
-        ok: { text: '#3E9B5F', tint: '#E3F3E8' },
-        warn: { text: '#8A5A14', tint: '#FBEBD2' },
-        bad: { text: '#D14343', tint: '#FBE3E3' },
+        // Dark theme di seluruh app — sesuai identitas automotive/gunmetal.
+        // surface = permukaan utama (bg app), raised = kartu, sunken = input/divider.
+        surface: { DEFAULT: '#18191B', raised: '#222325', sunken: '#2B2D30' },
+        // ink = teks. Kontras diukur: ink/surface ~15.8:1, ink-muted/surface ~5.9:1 (lolos WCAG AA).
+        ink: { DEFAULT: '#F4F3F1', muted: '#9A938E', soft: '#6F6A66' },
+        line: { DEFAULT: '#34363A', soft: '#2B2D30' },
+        // Oranye brand — satu-satunya aksen, dipakai di CTA/harga/status aktif saja.
+        brand: { text: '#FF7A45', DEFAULT: '#E0512A', tint: '#3A2420', deep: '#B8431F' },
+        ok: { text: '#5FC98A', tint: '#1E332A' },
+        warn: { text: '#F0B94D', tint: '#3A311C' },
+        bad: { text: '#F0695F', tint: '#3A2422' },
       },
       fontFamily: {
         display: ['Archivo_700Bold'],
@@ -32,6 +32,7 @@ module.exports = {
         title: ['20px', { lineHeight: '26px' }],
         body: ['16px', { lineHeight: '24px' }],
         'body-s': ['14px', { lineHeight: '20px' }],
+        label: ['11px', { lineHeight: '14px', letterSpacing: '0.8px' }],
       },
       borderRadius: { card: '14px', pill: '999px' },
       spacing: { tap: '52px', field: '56px' },
