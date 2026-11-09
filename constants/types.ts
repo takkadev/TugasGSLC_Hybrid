@@ -27,3 +27,24 @@ export interface TimeSlot {
   jam: string;
   tersedia: boolean;
 }
+
+export interface Vehicle {
+  id: string;
+  merek: string;
+  model: string;
+  platNomor: string;
+  odometerKm: number;
+  kmPerHari: number;
+}
+
+export type BookingStatus = 'menunggu' | 'dikonfirmasi' | 'selesai' | 'dibatalkan';
+
+export interface Booking {
+  id: string;
+  serviceId: string;
+  branchId: string;
+  tanggal: string;
+  jam: string;
+  status: BookingStatus;
+  hargaRupiah: number;
+}
