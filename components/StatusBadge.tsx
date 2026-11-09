@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-export type BookingStatus = 'menunggu' | 'dikonfirmasi' | 'selesai' | 'dibatalkan';
+import type { BookingStatus } from '../constants/types';
 
 const STATUS_META: Record<
   BookingStatus,
