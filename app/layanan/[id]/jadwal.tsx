@@ -101,15 +101,15 @@ export default function PilihJadwal() {
                   accessibilityState={{ selected: active, disabled: !slot.tersedia }}
                   className={`h-tap items-center justify-center rounded-pill border px-5 ${
                     !slot.tersedia
-                      ? 'border-line bg-surface-sunken opacity-50'
+                      ? 'border-line bg-surface-sunken'
                       : active
-                        ? 'border-brand bg-brand'
+                        ? 'border-brand bg-brand-deep'
                         : 'border-line active:bg-surface-sunken'
                   }`}
                 >
                   <Text
                     className={`text-body-s font-medium ${
-                      !slot.tersedia ? 'text-ink-soft' : active ? 'text-white' : 'text-ink'
+                      !slot.tersedia ? 'text-ink-muted' : active ? 'text-white' : 'text-ink'
                     }`}
                   >
                     {slot.jam}

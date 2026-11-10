@@ -40,7 +40,7 @@ export default function Layanan() {
                 accessibilityRole="button"
                 accessibilityState={{ selected: active }}
                 className={`h-tap items-center justify-center rounded-pill px-4 ${
-                  active ? 'bg-brand' : 'border border-line active:bg-surface-sunken'
+                  active ? 'bg-brand-deep' : 'border border-line active:bg-surface-sunken'
                 }`}
               >
                 <Text className={`text-body-s font-medium ${active ? 'text-white' : 'text-ink-muted'}`}>

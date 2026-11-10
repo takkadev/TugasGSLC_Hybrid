@@ -30,11 +30,7 @@ export default function Beranda() {
               <Text className="text-label uppercase text-ink-muted">Selamat Datang</Text>
               <Text className="font-display text-title text-ink">Budi Santoso</Text>
             </View>
-            <View
-              accessibilityRole="button"
-              accessibilityLabel="Notifikasi"
-              className="h-11 w-11 items-center justify-center rounded-pill bg-brand-tint"
-            >
+            <View className="h-11 w-11 items-center justify-center rounded-pill bg-brand-tint">
               <Ionicons name="notifications-outline" size={20} color="#FF7A45" />
             </View>
           </View>
@@ -83,7 +79,7 @@ export default function Beranda() {
           {/* Demo-only: toggle dua state Beranda (dipstick switch, bukan form Tambah Kendaraan sungguhan) */}
           {punyaMobil ? (
             <Pressable onPress={() => setPunyaMobil(false)} className="min-h-[32px] self-center">
-              <Text className="text-body-s text-ink-soft">Lihat state belum ada kendaraan</Text>
+              <Text className="text-body-s text-ink-muted">Lihat state belum ada kendaraan</Text>
             </Pressable>
           ) : null}
         </View>

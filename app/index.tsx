@@ -118,12 +118,6 @@ export default function AuthScreen() {
           <Button label={isLogin ? 'Masuk' : 'Daftar'} onPress={handleSubmit} />
 
           {isLogin ? (
-            <Pressable className="min-h-[32px] w-full items-center justify-center">
-              <Text className="text-body-s text-brand-text">Lupa kata sandi?</Text>
-            </Pressable>
-          ) : null}
-
-          {isLogin ? (
             <Text className="text-center text-body-s text-ink-muted">
               Belum punya akun?{' '}
               <Text className="text-brand-text" onPress={() => switchMode('register')}>
