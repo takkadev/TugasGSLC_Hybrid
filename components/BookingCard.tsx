@@ -13,7 +13,8 @@ export function BookingCard({ booking, onPress }: { booking: Booking; onPress?: 
   return (
     <Pressable
       onPress={onPress}
-      className="min-h-tap gap-2 rounded-card bg-surface-raised p-4 active:opacity-80"
+      accessibilityRole={onPress ? 'button' : undefined}
+      className="min-h-tap gap-2 rounded-card border border-line-soft bg-surface-raised p-4 active:opacity-80"
     >
       <View className="flex-row items-center justify-between">
         <Text className="font-semibold text-body text-ink">{service.nama}</Text>

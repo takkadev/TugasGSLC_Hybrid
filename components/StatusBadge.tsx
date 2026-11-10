@@ -14,10 +14,12 @@ const STATUS_META: Record<
 };
 
 /** Status selalu ikon DAN kata — tidak mengandalkan warna saja (aksesibilitas). */
-export function StatusBadge({ status }: { status: BookingStatus }) {
+export function StatusBadge({ status, center = false }: { status: BookingStatus; center?: boolean }) {
   const meta = STATUS_META[status];
   return (
-    <View className={`flex-row items-center gap-1 self-start rounded-pill px-3 py-1 ${meta.tintClass}`}>
+    <View
+      className={`flex-row items-center gap-1 rounded-pill px-3 py-1 ${center ? 'self-center' : 'self-start'} ${meta.tintClass}`}
+    >
       <Ionicons name={meta.icon} size={14} color="currentColor" className={meta.textClass} />
       <Text className={`text-body-s font-medium ${meta.textClass}`}>{meta.label}</Text>
     </View>

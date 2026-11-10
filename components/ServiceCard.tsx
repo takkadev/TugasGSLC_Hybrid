@@ -15,13 +15,15 @@ export function ServiceCard({ service, onPress }: { service: Service; onPress: (
   return (
     <Pressable
       onPress={onPress}
-      className="min-h-tap gap-3 rounded-card border border-line bg-white p-5 active:bg-surface-sunken"
+      accessibilityRole="button"
+      accessibilityLabel={`${service.nama}, ${formatRupiah(service.hargaRupiah)}, ${service.durasiMenit} menit`}
+      className="min-h-tap gap-3 rounded-card border border-line-soft bg-surface-raised p-5 active:opacity-80"
     >
       <View className="flex-row items-center justify-between">
         <View className="h-11 w-11 items-center justify-center rounded-card bg-brand-tint">
-          <Ionicons name={service.ikon} size={22} color="#C94A14" />
+          <Ionicons name={service.ikon} size={22} color="#FF7A45" />
         </View>
-        <Ionicons name="chevron-forward" size={20} color="#C2B6A0" />
+        <Ionicons name="chevron-forward" size={20} color="#6F6A66" />
       </View>
 
       <View className="gap-1">
@@ -31,7 +33,7 @@ export function ServiceCard({ service, onPress }: { service: Service; onPress: (
 
       <View className="flex-row items-center justify-between">
         <View className="flex-row items-center gap-1">
-          <Ionicons name="time-outline" size={14} color="#8C827B" />
+          <Ionicons name="time-outline" size={14} color="#9A938E" />
           <Text className="text-body-s text-ink-muted">{service.durasiMenit} menit</Text>
         </View>
         <Text className="font-data text-data-s font-semibold text-brand-text">

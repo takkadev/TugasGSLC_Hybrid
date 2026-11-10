@@ -37,7 +37,9 @@ export default function Layanan() {
               <Pressable
                 key={f.key}
                 onPress={() => setFilter(f.key)}
-                className={`min-h-[44px] items-center justify-center rounded-pill px-4 ${
+                accessibilityRole="button"
+                accessibilityState={{ selected: active }}
+                className={`h-tap items-center justify-center rounded-pill px-4 ${
                   active ? 'bg-brand' : 'border border-line active:bg-surface-sunken'
                 }`}
               >
@@ -49,14 +51,18 @@ export default function Layanan() {
           })}
         </ScrollView>
 
-        <ScrollView contentContainerClassName="gap-4 pb-6">
-          {daftar.map((service) => (
-            <ServiceCard
-              key={service.id}
-              service={service}
-              onPress={() => router.push(`/layanan/${service.id}`)}
-            />
-          ))}
+        <ScrollView contentContainerClassName="gap-4 pb-16">
+          {daftar.length === 0 ? (
+            <Text className="text-body-s text-ink-muted">Belum ada layanan di kategori ini.</Text>
+          ) : (
+            daftar.map((service) => (
+              <ServiceCard
+                key={service.id}
+                service={service}
+                onPress={() => router.push(`/layanan/${service.id}`)}
+              />
+            ))
+          )}
         </ScrollView>
       </View>
     </ScreenContainer>

@@ -14,9 +14,11 @@ export default function DetailLayanan() {
 
   if (!service) {
     return (
-      <ScreenContainer className="items-center justify-center px-6">
-        <Text className="text-body text-ink-muted">Layanan tidak ditemukan</Text>
-        <Button label="Kembali ke Layanan" onPress={() => router.back()} />
+      <ScreenContainer>
+        <View className="flex-1 items-center justify-center gap-4 px-6">
+          <Text className="text-body text-ink-muted">Layanan tidak ditemukan</Text>
+          <Button label="Kembali ke Layanan" onPress={() => router.back()} />
+        </View>
       </ScreenContainer>
     );
   }
@@ -29,7 +31,7 @@ export default function DetailLayanan() {
         </Pressable>
 
         <View className="mb-5 h-20 w-20 items-center justify-center rounded-card bg-brand-tint">
-          <Ionicons name={service.ikon} size={36} color="#C94A14" />
+          <Ionicons name={service.ikon} size={36} color="#FF7A45" />
         </View>
 
         <Text className="font-display text-display text-ink">{service.nama}</Text>
@@ -44,7 +46,7 @@ export default function DetailLayanan() {
         <View className="mb-8 gap-2">
           {service.termasuk.map((item) => (
             <View key={item} className="flex-row items-center gap-2">
-              <Ionicons name="checkmark-circle" size={18} color="#3E9B5F" />
+              <Ionicons name="checkmark-circle" size={18} color="#5FC98A" />
               <Text className="text-body text-ink">{item}</Text>
             </View>
           ))}

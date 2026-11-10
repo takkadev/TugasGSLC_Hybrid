@@ -6,20 +6,21 @@
     "orientation": "portrait",
     "scheme": "montirku",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#F2F1EC",
+        "backgroundColor": "#18191B",
         "foregroundImage": "./assets/icon.png"
       }
     },
     "web": {
       "favicon": "./assets/favicon.png",
-      "bundler": "metro"
+      "bundler": "metro",
+      "backgroundColor": "#18191B"
     },
     "plugins": ["expo-router", "expo-font", "expo-splash-screen"]
   }

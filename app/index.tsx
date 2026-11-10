@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { Pressable, ScrollView, Text, View } from 'react-native';
 import { router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -10,9 +10,8 @@ import { Button } from '../components/Button';
  * Layar Autentikasi (Login & Register dihitung satu layar, soal poin a).
  *
  * Prototipe: tidak ada backend/AsyncStorage (sesuai soal: "autentikasi
- * belum diimplementasikan"). Validasi input sederhana saja, lalu diarahkan
- * ke Halaman Utama. Login tampil gelap, Register tampil terang — mengikuti
- * mockup desain MontirKu.
+ * belum diimplementasikan"). Semua elemen pada satu axis (center), spacing
+ * kelipatan 8px, card terpusat vertikal+horizontal.
  */
 export default function AuthScreen() {
   const [mode, setMode] = useState<'login' | 'register'>('login');
@@ -21,6 +20,11 @@ export default function AuthScreen() {
   const [hp, setHp] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  function switchMode(next: 'login' | 'register') {
+    setMode(next);
+    setErrors({});
+  }
 
   function validate() {
     const next: Record<string, string> = {};
@@ -35,7 +39,7 @@ export default function AuthScreen() {
     }
     if (password.length < 6) {
       const sisa = 6 - password.length;
-      next.password = `Baru ${password.length} karakter. Tambah ${sisa} lagi.`;
+      next.password = sisa > 0 ? `Kurang ${sisa} karakter lagi` : 'Kata sandi belum valid';
     }
     setErrors(next);
     return Object.keys(next).length === 0;
@@ -43,48 +47,51 @@ export default function AuthScreen() {
 
   function handleSubmit() {
     if (!validate()) return;
-    router.replace('/layanan');
+    router.replace('/beranda');
   }
 
   const isLogin = mode === 'login';
 
   return (
     <ScrollView
-      className={isLogin ? 'flex-1 bg-steel' : 'flex-1 bg-surface'}
-      contentContainerClassName="min-h-full justify-center px-6 py-10"
+      className="flex-1 bg-surface"
+      contentContainerClassName="min-h-full items-center justify-center px-6 py-10"
     >
-      {/* Lebar form dikunci di 400px dan dipusatkan — tanpa ini form stretch
-          selebar viewport web, yang justru merusak keterbacaan. */}
-      <View className="w-full max-w-[400px] self-center">
-        <View className="mb-8 flex-row items-center justify-center gap-2">
-          <Ionicons name="build" size={28} color="#E85A1F" />
-          <Text className={`font-display text-title ${isLogin ? 'text-steel-on' : 'text-ink'}`}>
-            MONTIRKU
+      <View className="w-full max-w-[400px] items-center gap-6 rounded-card border border-line-soft bg-surface-raised p-6">
+        <View className="items-center gap-1.5">
+          <View className="h-12 w-12 items-center justify-center rounded-pill bg-brand-tint">
+            <Ionicons name="build" size={22} color="#FF7A45" />
+          </View>
+          <Text className="font-display text-title text-ink">MontirKu</Text>
+        </View>
+
+        <View className="w-full items-center gap-0.5">
+          {!isLogin ? (
+            <Pressable
+              onPress={() => switchMode('login')}
+              className="mb-2 min-h-[32px] w-full flex-row items-center justify-center"
+            >
+              <Text className="text-brand-text">← Kembali</Text>
+            </Pressable>
+          ) : null}
+          <Text className="font-display text-display text-ink">
+            {isLogin ? 'Masuk' : 'Daftar akun'}
+          </Text>
+          <Text className="text-center text-body text-ink-muted">
+            {isLogin
+              ? 'Kelola servis mobil kamu dalam satu tempat'
+              : 'Isi data diri untuk mulai booking servis'}
           </Text>
         </View>
 
-        {!isLogin ? (
-          <Text className="mb-4 text-brand-text active:opacity-70" onPress={() => { setMode('login'); setErrors({}); }}>
-            ← Kembali
-          </Text>
-        ) : null}
-
-        <Text className={`font-display text-display ${isLogin ? 'text-steel-on' : 'text-ink'}`}>
-          {isLogin ? 'Masuk' : 'Daftar akun'}
-        </Text>
-        <Text className={`mb-6 text-body ${isLogin ? 'text-steel-on/70' : 'text-ink-muted'}`}>
-          {isLogin ? 'Masuk untuk melanjutkan booking kamu' : 'Isi data diri untuk mulai booking servis'}
-        </Text>
-
-        <View className="gap-4">
+        <View className="w-full gap-3">
           {mode === 'register' ? (
-            <Input label="Nama lengkap" placeholder="Budi Santoso" value={nama} onChangeText={setNama} error={errors.nama} />
+            <Input label="Nama" placeholder="Budi Santoso" value={nama} onChangeText={setNama} error={errors.nama} />
           ) : null}
 
           <Input
-            dark={isLogin}
             label="Email"
-            placeholder="budi@email.com"
+            placeholder="nama@email.com"
             value={email}
             onChangeText={setEmail}
             autoCapitalize="none"
@@ -97,28 +104,36 @@ export default function AuthScreen() {
           ) : null}
 
           <Input
-            dark={isLogin}
-            label="Password"
-            placeholder="Minimal 6 karakter"
+            label="Kata sandi"
+            placeholder="••••••••"
+            helper="Minimal 6 karakter"
             value={password}
             onChangeText={setPassword}
             secureTextEntry
             error={errors.password}
           />
+        </View>
 
+        <View className="w-full gap-3">
           <Button label={isLogin ? 'Masuk' : 'Daftar'} onPress={handleSubmit} />
 
           {isLogin ? (
-            <Text className="text-center text-body-s text-steel-on/70">
+            <Pressable className="min-h-[32px] w-full items-center justify-center">
+              <Text className="text-body-s text-brand-text">Lupa kata sandi?</Text>
+            </Pressable>
+          ) : null}
+
+          {isLogin ? (
+            <Text className="text-center text-body-s text-ink-muted">
               Belum punya akun?{' '}
-              <Text className="text-brand" onPress={() => { setMode('register'); setErrors({}); }}>
+              <Text className="text-brand-text" onPress={() => switchMode('register')}>
                 Daftar sekarang
               </Text>
             </Text>
           ) : (
             <Text className="text-center text-body-s text-ink-muted">
               Sudah punya akun?{' '}
-              <Text className="text-brand" onPress={() => { setMode('login'); setErrors({}); }}>
+              <Text className="text-brand-text" onPress={() => switchMode('login')}>
                 Masuk
               </Text>
             </Text>

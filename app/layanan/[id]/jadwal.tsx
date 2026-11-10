@@ -25,9 +25,11 @@ export default function PilihJadwal() {
 
   if (!service) {
     return (
-      <ScreenContainer className="items-center justify-center px-6">
-        <Text className="text-body text-ink-muted">Layanan tidak ditemukan</Text>
-        <Button label="Kembali" onPress={() => router.back()} />
+      <ScreenContainer>
+        <View className="flex-1 items-center justify-center gap-4 px-6">
+          <Text className="text-body text-ink-muted">Layanan tidak ditemukan</Text>
+          <Button label="Kembali" onPress={() => router.back()} />
+        </View>
       </ScreenContainer>
     );
   }
@@ -35,15 +37,17 @@ export default function PilihJadwal() {
   if (konfirmasi) {
     const branch = BRANCHES.find((b) => b.id === branchId)!;
     return (
-      <ScreenContainer className="items-center justify-center px-6">
-        <View className="w-full max-w-[400px] items-center gap-4">
-          <StatusBadge status="menunggu" />
-          <Text className="text-center font-display text-display text-ink">Booking dibuat</Text>
-          <Text className="text-center text-body text-ink-muted">
-            {service.nama} di {branch.nama}, jam {jam}. Ini prototipe — belum ada penyimpanan
-            sungguhan.
-          </Text>
-          <Button label="Kembali ke Layanan" onPress={() => router.replace('/layanan')} />
+      <ScreenContainer>
+        <View className="flex-1 items-center justify-center px-6">
+          <View className="w-full max-w-[400px] items-center gap-4">
+            <StatusBadge status="menunggu" center />
+            <Text className="text-center font-display text-display text-ink">Booking dibuat</Text>
+            <Text className="text-center text-body text-ink-muted">
+              {service.nama} di {branch.nama}, jam {jam}. Ini prototipe — belum ada penyimpanan
+              sungguhan.
+            </Text>
+            <Button label="Kembali ke Beranda" onPress={() => router.replace('/beranda')} />
+          </View>
         </View>
       </ScreenContainer>
     );
@@ -51,7 +55,7 @@ export default function PilihJadwal() {
 
   return (
     <ScreenContainer>
-      <ScrollView contentContainerClassName="w-full max-w-[560px] self-center px-5 pt-10 pb-10 gap-6">
+      <ScrollView contentContainerClassName="w-full max-w-[560px] self-center px-5 pt-10 pb-16 gap-6">
         <View>
           <Pressable onPress={() => router.back()} className="mb-4 min-h-[32px] self-start">
             <Text className="text-brand-text">← Kembali</Text>
@@ -68,6 +72,8 @@ export default function PilihJadwal() {
               <Pressable
                 key={branch.id}
                 onPress={() => setBranchId(branch.id)}
+                accessibilityRole="button"
+                accessibilityState={{ selected: active }}
                 className={`min-h-tap rounded-card border p-4 ${
                   active ? 'border-brand bg-brand-tint' : 'border-line active:bg-surface-sunken'
                 }`}
@@ -91,7 +97,9 @@ export default function PilihJadwal() {
                   key={slot.jam}
                   disabled={!slot.tersedia}
                   onPress={() => setJam(slot.jam)}
-                  className={`min-h-[44px] items-center justify-center rounded-pill border px-5 ${
+                  accessibilityRole="button"
+                  accessibilityState={{ selected: active, disabled: !slot.tersedia }}
+                  className={`h-tap items-center justify-center rounded-pill border px-5 ${
                     !slot.tersedia
                       ? 'border-line bg-surface-sunken opacity-50'
                       : active
